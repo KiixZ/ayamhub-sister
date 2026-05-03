@@ -17,6 +17,23 @@ const register = async (req, res, next) => {
       });
     }
 
+    // Validasi format email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({
+        status: "error",
+        message: "Format email tidak valid",
+      });
+    }
+
+    // Validasi panjang password
+    if (password.length < 6) {
+      return res.status(400).json({
+        status: "error",
+        message: "Password minimal 6 karakter",
+      });
+    }
+
     // Cek apakah email sudah terdaftar
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
@@ -64,6 +81,15 @@ const login = async (req, res, next) => {
       return res.status(400).json({
         status: "error",
         message: "Email dan password wajib diisi",
+      });
+    }
+
+    // Validasi format email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({
+        status: "error",
+        message: "Format email tidak valid",
       });
     }
 

@@ -18,7 +18,7 @@ Client (Mobile App)
        │
    [Models] ──── Sequelize ORM
        │
-  [Database] ──── MySQL
+  [Database] ──── SQLite
 ```
 
 ## Teknologi
@@ -26,7 +26,7 @@ Client (Mobile App)
 - **Runtime**: Node.js
 - **Framework**: Express.js
 - **ORM**: Sequelize
-- **Database**: MySQL
+- **Database**: SQLite
 - **Autentikasi**: JSON Web Token (JWT)
 - **Upload File**: Multer
 - **Password Hashing**: bcrypt.js
@@ -74,7 +74,6 @@ Client (Mobile App)
 
 ### Prasyarat
 - Node.js >= 16
-- MySQL >= 5.7
 
 ### Langkah-langkah
 
@@ -94,14 +93,7 @@ Client (Mobile App)
    cp .env.example .env
    ```
 
-4. Sesuaikan konfigurasi database di file `.env`
-
-5. Buat database MySQL:
-   ```sql
-   CREATE DATABASE ayamhub_db;
-   ```
-
-6. Jalankan server:
+4. Jalankan server (database SQLite otomatis dibuat):
    ```bash
    # Development (dengan auto-reload)
    npm run dev
