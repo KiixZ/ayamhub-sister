@@ -3,11 +3,13 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const path = require("path");
+const swaggerUi = require("swagger-ui-express");
 require("dotenv").config();
 
 const { sequelize } = require("./models");
 const routes = require("./routes");
 const errorHandler = require("./middleware/errorHandler");
+const swaggerSpec = require("./config/swagger");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -22,6 +24,9 @@ app.use(cookieParser());
 
 // Serve uploaded files secara statis
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+// Swagger UI
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // ==========================================
 // Routes
